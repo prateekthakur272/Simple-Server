@@ -1,11 +1,14 @@
 const { createServer } = require("http")
+const fs = require('fs');
+
+const homePage = fs.readFileSync('./index.html','utf-8');
 
 const server = createServer((req, res) => {
 
     const url = req.url;
     if (url === '/') {
         res.writeHead(200, 'Done', { 'content-type': 'text/html' })
-        res.write('<h1>Home</h1>')
+        res.write(homePage)
         res.end()
     } else if (url === '/about') {
         res.writeHead(200, 'Done', { 'content-type': 'text/html' })
